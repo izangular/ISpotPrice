@@ -27,7 +27,11 @@
         <ion-card class="releative">
           
           <ion-icon  ios="ios-add-circle" md="md-add-circle"class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
-         <img [src]="photo" *ngIf="photo" />
+         <img [src]="photo.imageData" *ngIf="photo" />
+         <div>
+            <span>Lat {{ photo.latitude }} </span>
+            <span>Lon {{ photo.longitude }}</span>
+         </div>
         </ion-card>
       </ion-col>
     </ion-row>
