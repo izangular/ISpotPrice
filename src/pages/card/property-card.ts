@@ -22,4 +22,8 @@ export class PropertyCard {
     back(){
         this.navCtrl.pop();
     }
+
+    appraise(){
+        this.propertyData.price = Math.round(Math.random() * 1000000);
+    }
 }

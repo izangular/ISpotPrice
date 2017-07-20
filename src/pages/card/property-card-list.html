@@ -27,24 +27,27 @@
             </ion-card-content>
 
             <ion-row no-padding>
-            <ion-col>
-                <button ion-button clear small color="golden" icon-start>
-                <ion-icon name='star'></ion-icon>
-                 Rating {{property.microRating}}
-                </button>
-            </ion-col>
-            <ion-col text-center>
-                <button ion-button clear small color="danger" icon-start (click)="deleteProperty(id)">
-                <ion-icon name='trash'></ion-icon>
-                Trash
-                </button>
-            </ion-col>
-            <ion-col text-right>
-                <button ion-button clear small color="black" icon-start (click)="showPropertyDetails(property)">
-                    <ion-icon name="information-circle"></ion-icon>
-                    Details
-                </button>
-            </ion-col>
+                <ion-col>
+                    <button ion-button clear small color="golden" icon-start>
+                    <ion-icon name='star'></ion-icon>
+                    Rating {{property.microRating}}
+                    </button>
+                </ion-col>
+                <ion-col text-center>
+                    <button ion-button clear small color="danger" icon-start (click)="deleteProperty(id)">
+                    <ion-icon name='trash'></ion-icon>
+                    Trash
+                    </button>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col text-left>
+                    <button ion-button clear small color="black" icon-start (click)="showPropertyDetails(property)">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Details
+                    </button>
+                </ion-col>
             </ion-row> 
 
         </ion-card>

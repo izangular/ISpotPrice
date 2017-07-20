@@ -81,7 +81,11 @@ export class PropertyCardList {
                     town: "Zürich",
                     microRating: 4.5,
                     objectType: "House",
-                    price: 5000000
+                    price: 5000000,
+
+                    surfaceLiving: -2,
+                    roomNb: -2,
+                    buildYear: -2
                 };
 
                 this

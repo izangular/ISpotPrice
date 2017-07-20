@@ -7,11 +7,11 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="cards-bg">
+<ion-content class="cards-bg" *ngIf="propertyData">
 
   <ion-card>
 
-    <img [src]="propertyData.imageData" *ngIf="propertyData"/>
+    <img [src]="propertyData.imageData"/>
 
     <ion-card-content>
       <ion-card-title>
@@ -47,4 +47,20 @@
     </ion-row>
 
   </ion-card>
+  
+  <button ion-button color="secondary" (click)="appraise()" >Appraise</button>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" stacked>Surface living</ion-label>
+      <ion-input type="number" placeholder="Surface living" [(ngModel)]="propertyData.surfaceLiving"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Rooms</ion-label>
+      <ion-input type="number" placeholder="Rooms" [(ngModel)]="propertyData.roomNb"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Build year</ion-label>
+      <ion-input type="number" placeholder="Build year" [(ngModel)]="propertyData.buildYear"></ion-input>
+    </ion-item>    
+  </ion-list>
 </ion-content>
