@@ -13,7 +13,8 @@ export class CameraService {
             destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE,
-            sourceType: this.camera.PictureSourceType.CAMERA
+            sourceType: this.camera.PictureSourceType.CAMERA,
+            saveToPhotoAlbum: true
         };
 
         return this
