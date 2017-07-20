@@ -1,13 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Home
-    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="card-background-page">
-  <button ion-button full (click)='takePhoto()'><ion-icon name="camera"></ion-icon>&nbsp;&nbsp;Take Photo</button>
+  <!-- <button ion-button full (click)='takePhoto()'><ion-icon name="camera"></ion-icon>&nbsp;&nbsp;Take Photo</button> -->
 
 
   <!-- <ion-grid>
@@ -21,7 +22,7 @@
     </ion-row>
   </ion-grid> -->
 
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col col-6 *ngFor="let photo of photos; let id = index">
         <ion-card class="releative">
@@ -35,7 +36,8 @@
         </ion-card>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 
+  <property-card-list></property-card-list>
 
 </ion-content>
