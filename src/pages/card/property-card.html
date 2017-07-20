@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Property</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+
+  <ion-card>
+
+    <img [src]="propertyData.imageData" *ngIf="propertyData"/>
+
+    <ion-card-content>
+      <ion-card-title>
+        {{propertyData.street}}, {{propertyData.zip}} {{propertyData.town}} <p><small>Lat {{propertyData.latitude}}, Lon {{propertyData.longitude}}</small></p>
+      </ion-card-title>
+      <!-- <p>
+        
+      </p> -->
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-start>
+          <ion-icon name='star'></ion-icon>
+          Rating {{propertyData.microRating}}
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-start>
+          <ion-icon name='cash'></ion-icon>
+          CHF {{propertyData.price}}
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-start>
+          <ion-icon name='home'></ion-icon>
+          {{propertyData.objectType}}
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+</ion-content>
