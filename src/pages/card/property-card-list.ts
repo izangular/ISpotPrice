@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, AlertController} from 'ionic-angular';
-import { GeoLocationService } from '../../app/geo-location.service';
-import { CameraService } from '../../app/camera.service';
+import { GeoLocationService } from '../../providers/geo-location.service';
+import { CameraService } from '../../providers/camera.service';
 import { IProperty } from './IProperty';
 import { PropertyCard } from './property-card';
 

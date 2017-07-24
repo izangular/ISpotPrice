@@ -13,8 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {Camera} from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import { GeoLocationService } from './geo-location.service';
-import { CameraService } from './camera.service';
+import { GeoLocationService } from '../providers/geo-location.service';
+import { CameraService } from '../providers/camera.service';
 
 @NgModule({
   declarations: [
