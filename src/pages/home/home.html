@@ -1,43 +1,46 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+
 </ion-header>
 
 <ion-content padding class="card-background-page">
-  <!-- <button ion-button full (click)='takePhoto()'><ion-icon name="camera"></ion-icon>&nbsp;&nbsp;Take Photo</button> -->
+  <div class="card-background-page-above">
+  <ion-card *ngFor="let property of propertyList; let id = index">
+            <img [src]="property.imageData" *ngIf="property">
 
+             <ion-card-content>
+            <ion-card-title>
+                {{property.street}}, {{property.zip}} {{property.town}}
+            </ion-card-title>
+            </ion-card-content>
 
-  <!-- <ion-grid>
-    <ion-row>
-      <ion-col col-6 >
-        <ion-card class="releative">
-          <ion-icon  ios="ios-add-circle" md="md-add-circle" class="deleteIcon" (click)="deletePhoto(2)"></ion-icon>
-         <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
+            <ion-row no-padding>
+                <ion-col>
+                    <button ion-button clear small color="golden" icon-start>
+                    <ion-icon name='star'></ion-icon>
+                    Rating {{property.microRating}}
+                    </button>
+                </ion-col>
+                <ion-col text-center>
+                    <button ion-button clear small color="danger" icon-start (click)="deleteProperty(id)">
+                    <ion-icon name='trash'></ion-icon>
+                    Trash
+                    </button>
+                </ion-col>
+            </ion-row>
 
-  <!-- <ion-grid>
-    <ion-row>
-      <ion-col col-6 *ngFor="let photo of photos; let id = index">
-        <ion-card class="releative">
-          
-          <ion-icon  ios="ios-add-circle" md="md-add-circle"class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
-         <img [src]="photo.imageData" *ngIf="photo" />
-         <div>
-            <span>Lat {{ photo.latitude }} </span>
-            <span>Lon {{ photo.longitude }}</span>
-         </div>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
-
-  <property-card-list></property-card-list>
-
+            <ion-row>
+                <ion-col text-left>
+                    <button ion-button clear small color="black" icon-start (click)="showPropertyDetails(property)">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Details
+                    </button>
+                </ion-col>
+            </ion-row> 
+    </ion-card>
+  </div>
 </ion-content>
+<ion-footer class="foot">
+<button ion-button color="secondary" round><ion-icon name="home"></ion-icon></button>
+<button ion-button color="secondary" round (click)='takePhoto()'><ion-icon name="camera"></ion-icon></button>
+<button ion-button color="secondary" round><ion-icon name="mail"></ion-icon></button>
+</ion-footer>

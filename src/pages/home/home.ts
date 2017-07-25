@@ -1,17 +1,149 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, AlertController, LoadingController} from 'ionic-angular';
+import { GeoLocationService } from '../../providers/geo-location.service';
+import { CameraService } from '../../providers/camera.service';
+import { IProperty } from '../card/IProperty';
+import { PropertyCard } from '../card/property-card';
+import { Diagnostic } from '@ionic-native/diagnostic'
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers:[Diagnostic]
 })
 export class HomePage {
+      public propertyList : IProperty[];
+      public base64Image : string;
 
-  constructor(public navCtrl : NavController
+  constructor(public navCtrl : NavController,
+              private alertCtrl : AlertController,
+              private geolocation: GeoLocationService,
+              private camera: CameraService,
+              private diagnostic:Diagnostic,
+              private loadingCtrl:LoadingController
             ) {}
 
   ngOnInit() {
+    this.propertyList = [];
+        
+        //check if location enabled - android
+        this.diagnostic.isLocationEnabled().then((state)=>{
+        if(state==false)
+        {
+            let msg = this.alertCtrl.create({title: 'Error', message:'Location is not enabled. Go to Settings?', 
+            buttons: [
+            {
+                text: 'No',
+                handler: () => {
+                console.log('No Location access');//close app
+                
+                }
+            }, {
+                text: 'Yes',
+                handler: () => {
+                console.log('Loading settings');
+                this.diagnostic.switchToLocationSettings();
+                //return true;
+                }
+            }
+            ]});
+            msg.present();
+        }
+        }).catch((error) => {
+            console.log('Error getting location', error)});
+  }
+
+  takePhoto() {
+    console.log("Take1");
+    this.camera.capturePhoto()
+    .then((imageData) => {
+      //loading screen
+      let loading = this.loadingCtrl.create({
+        spinner: 'bubbles',
+        content: 'Loading...'
+      }); 
+      loading.present();
+
+      this.base64Image = 'data:image/jpeg;base64,'+ imageData;
+
+      let lat = 0;
+      let lon = 0;
+      //Get cordinates
+      console.log("Take2");
+      this.geolocation.getGeoLocation()
+              .then((resp) => {
+                  console.log("Take 101");
+                  lat = resp.coords.latitude;
+                  lon = resp.coords.longitude;
+                  console.log(lat + ' ' + lon);
+          }).catch((error) => {
+              console.log('Error getting location', error);
+          }).then(function(){
+          console.log("Take3");
+          let property : IProperty = {
+              imageData: this.base64Image, 
+              latitude: lat, 
+              longitude: lon,
+
+              street: "Tramstrasse 10",
+              zip: "8050",
+              town: "Zürich",
+              microRating: 4.5,
+              objectType: "House",
+              price: 5000000,
+
+              surfaceLiving: -2,
+              roomNb: -2,
+              buildYear: -2
+          };
+
+          this
+              .propertyList
+              .push(property);
+          this
+              .propertyList
+              .reverse();
+        }.bind(this)).catch((error) => {
+            console.log('Error getting location', error);
+        }).then(()=>{loading.dismiss();});
+
+        console.log("Take5");
+    }, (err) => {
+        console.log(err);
+    });
+  }
+
+  deleteProperty(index) {
+        let confirm = this
+        .alertCtrl
+        .create({
+            title: 'Sure you want to delete this property? There is NO undo!',
+            message: '',
+            buttons: [
+            {
+                text: 'No',
+                handler: () => {
+                console.log('Disagree clicked');
+                }
+            }, {
+                text: 'Yes',
+                handler: () => {
+                console.log('Agree clicked');
+                this
+                    .propertyList
+                    .splice(index, 1);
+                //return true;
+                }
+            }
+            ]
+        });
+        confirm.present();
+  }
+
+  showPropertyDetails(property){
+        this.navCtrl.push(PropertyCard, {propertyData: property});
   }
 }
+
 
 
