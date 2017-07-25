@@ -4,10 +4,12 @@ import { GeoLocationService } from '../../providers/geo-location.service';
 import { CameraService } from '../../providers/camera.service';
 import { IProperty } from './IProperty';
 import { PropertyCard } from './property-card';
+import { Diagnostic } from '@ionic-native/diagnostic'
 
 @Component({
   selector: 'property-card-list',
-  templateUrl: 'property-card-list.html'
+  templateUrl: 'property-card-list.html',
+  providers: [Diagnostic]
 })
 export class PropertyCardList {
     public propertyList : IProperty[];
@@ -16,11 +18,38 @@ export class PropertyCardList {
     constructor(public navCtrl : NavController,
               private alertCtrl : AlertController,
               private geolocation: GeoLocationService,
-              private camera: CameraService
+              private camera: CameraService,
+              private diagnostic:Diagnostic
             ) {}
 
     ngOnInit() {
         this.propertyList = [];
+        
+        //check if location enabled - android
+        this.diagnostic.isLocationEnabled().then((state)=>{
+        if(state==false)
+        {
+            let msg = this.alertCtrl.create({title: 'Error', message:'Location is not enabled. Go to Settings?', 
+            buttons: [
+            {
+                text: 'No',
+                handler: () => {
+                console.log('No Location access');//close app
+                
+                }
+            }, {
+                text: 'Yes',
+                handler: () => {
+                console.log('Loading settings');
+                this.diagnostic.switchToLocationSettings();
+                //return true;
+                }
+            }
+            ]});
+            msg.present();
+        }
+        }).catch((error) => {
+            console.log('Error getting location', error)});
 
     }
 
