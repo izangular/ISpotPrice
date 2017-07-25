@@ -1,0 +1,39 @@
+
+
+ul {
+  padding: 0px;
+ 
+  &.rating li {
+    padding: 5px 10px !important;
+    background: none;
+    color:  #ffb400;
+    display : inline-block;
+    
+    ion-icon {
+      font-size: 20px;     
+    }
+  }
+}
+
+
+/*
+h2 { 
+   position: absolute; 
+   top: 200px; 
+   left: 0; 
+   width: 100%; 
+} */
+
+.price{
+  display : inline-block;
+  font-size: 20px;
+  color: orange;
+  float: left;
+}
+
+.rating{
+    display: inline-block;
+    float: right;
+
+}
+

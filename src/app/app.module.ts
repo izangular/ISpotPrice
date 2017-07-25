@@ -15,6 +15,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { GeoLocationService } from '../providers/geo-location.service';
 import { CameraService } from '../providers/camera.service';
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CameraService } from '../providers/camera.service';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    Ionic2RatingModule, // Put ionic2-rating module here
   ],
   bootstrap: [IonicApp],
   entryComponents: [
