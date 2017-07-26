@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, AlertController, LoadingController} from 'ionic-angular';
 import { GeoLocationService } from '../../providers/geo-location.service';
 import { CameraService } from '../../providers/camera.service';
+import { ApiService } from '../../providers/api-sevice';
 import { IProperty } from '../card/IProperty';
 import { PropertyCard } from '../card/property-card';
 import { Diagnostic } from '@ionic-native/diagnostic'
@@ -9,18 +10,26 @@ import { Diagnostic } from '@ionic-native/diagnostic'
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers:[Diagnostic]
+  providers:[Diagnostic,ApiService]
 })
 export class HomePage {
       public propertyList : IProperty[];
       public base64Image : string;
+      public zip : string;
+      public town : string;
+      public street : string;
+      public category : string;
+      public country : string;
+      public appraisalValue : string;
+      public rating : string;
 
   constructor(public navCtrl : NavController,
               private alertCtrl : AlertController,
               private geolocation: GeoLocationService,
               private camera: CameraService,
               private diagnostic:Diagnostic,
-              private loadingCtrl:LoadingController
+              private loadingCtrl:LoadingController,
+              private apiService : ApiService
             ) {}
 
   ngOnInit() {
@@ -80,33 +89,49 @@ export class HomePage {
               console.log('Error getting location', error);
           }).then(function(){
           console.log("Take3");
-          let property : IProperty = {
+       
+          //this.getData(this.base64Image,lat,lon);
+
+          let property : IProperty = {     
               imageData: this.base64Image, 
               latitude: lat, 
               longitude: lon,
-
+              
               street: "Tramstrasse 10",
               zip: "8050",
               town: "Zürich",
-              microRating: 4.5,
+              microRating: 3,
               objectType: "House",
               price: 5000000,
 
+              //street: this.street,
+              //zip: this.zip,
+              //town: this.town,
+              //microRating: this.rating,
+              //objectType: this.category,
+              //price: this.appraisalValue,
+              LandSurface:800,
               surfaceLiving: -2,
               roomNb: -2,
+              bathNb:5,
               buildYear: -2
+
+              
           };
+
+          this.showPropertyDetails(property);
 
           this
               .propertyList
               .push(property);
           this
               .propertyList
-              .reverse();
+              .reverse();             
         }.bind(this)).catch((error) => {
             console.log('Error getting location', error);
         }).then(()=>{loading.dismiss();});
-
+        
+        
         console.log("Take5");
     }, (err) => {
         console.log(err);
@@ -143,6 +168,54 @@ export class HomePage {
   showPropertyDetails(property){
         this.navCtrl.push(PropertyCard, {propertyData: property});
   }
+
+  showPropertyDetailsTest(){
+      let property : IProperty = {     
+              imageData: this.base64Image, 
+              latitude: 0, 
+              longitude: 0,
+              
+              street: "Tramstrasse 10",
+              zip: "8050",
+              town: "Zürich",
+              microRating: 3,
+              objectType: "House",
+              price: 5000000,
+
+              //street: this.street,
+              //zip: this.zip,
+              //town: this.town,
+              //microRating: this.rating,
+              //objectType: this.category,
+              //price: this.appraisalValue,
+              
+             LandSurface: 800,
+             surfaceLiving: -2,
+             roomNb: -2,
+             bathNb:5,
+             buildYear: -2
+
+              
+          };
+    this.navCtrl.push(PropertyCard, {propertyData: property});
+  }
+
+  getData(imageBase64, latitude, longitude){
+      this.apiService.getData(imageBase64,latitude,longitude).subscribe(
+            (data) => 
+            {
+                console.log(data);
+                this.zip = data.zip;
+                this.town = data.town;
+                this.street = data.street;
+                this.country = data.country;
+                this.category = data.category;
+                this.appraisalValue = data.appraisalValue;
+                this.rating = data.rating;
+            }
+      )
+  }
+
 }
 
 

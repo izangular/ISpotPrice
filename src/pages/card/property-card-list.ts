@@ -111,9 +111,11 @@ export class PropertyCardList {
                     microRating: 4.5,
                     objectType: "House",
                     price: 5000000,
-
+                    
+                    LandSurface: 800,
                     surfaceLiving: -2,
                     roomNb: -2,
+                    bathNb:5,
                     buildYear: -2
                 };
 

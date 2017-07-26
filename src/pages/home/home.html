@@ -2,11 +2,12 @@
 
 </ion-header>
 
-<ion-content padding class="card-background-page">
-  <div class="card-background-page-above">
+<ion-content padding > <!-- class="card-background-page" -->
+  <!--<div class="card-background-page-above">-->
+  <button ion-button color="secondary" round (click)='showPropertyDetailsTest()'><ion-icon name="camera"></ion-icon></button>
   <ion-card *ngFor="let property of propertyList; let id = index">
             <img [src]="property.imageData" *ngIf="property">
-
+  
              <ion-card-content>
             <ion-card-title>
                 {{property.street}}, {{property.zip}} {{property.town}}
@@ -37,7 +38,7 @@
                 </ion-col>
             </ion-row> 
     </ion-card>
-  </div>
+  <!--</div>-->
 </ion-content>
 <ion-footer class="foot">
 <button ion-button color="secondary" round><ion-icon name="home"></ion-icon></button>

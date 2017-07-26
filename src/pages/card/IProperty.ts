@@ -10,7 +10,9 @@ export interface IProperty {
     zip:string;
     town:string;
 
+    LandSurface: number;
     surfaceLiving: number;
     roomNb: number;
+    bathNb:number;
     buildYear: number;
 }

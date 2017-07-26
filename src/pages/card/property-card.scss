@@ -2,15 +2,16 @@
 
 ul {
   padding: 0px;
- 
+  margin-top: 7px !important;
+
   &.rating li {
-    padding: 5px 10px !important;
+    padding: 2px 8px !important;
     background: none;
     color:  #ffb400;
     display : inline-block;
-    
+    margin-top:2px!important;
     ion-icon {
-      font-size: 20px;     
+      font-size: 25px;     
     }
   }
 }
@@ -25,15 +26,72 @@ h2 {
 } */
 
 .price{
-  display : inline-block;
+  //display : inline-block;
+  padding:5px;
+  font-weight: bold;
   font-size: 20px;
   color: orange;
   float: left;
 }
 
 .rating{
-    display: inline-block;
-    float: right;
+    //display: inline-block;
+    float: left;
 
 }
 
+.VariableText{
+  display: inline;
+  float:left;
+}
+
+.VariableValue{
+  display: inline;
+  float:right;
+}
+
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+
+h2 { 
+   position: absolute; 
+   top: 230px; 
+   left: 0; 
+   width: 100%; 
+   color: orange; 
+   font: bold 24px/45px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+}
+
+
+h2 span { 
+   color: orange; 
+   font: bold 24px/45px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
+}
+
+h2 span.spacer {
+   padding:0 5px;
+}
+
+.Appraisal{
+  width:25%;
+  height:50px;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#example {
+   position: absolute;
+   top: 70%;
+   width:100%;
+   //left: 10px; 
+   padding-top:7px;    
+   background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+}

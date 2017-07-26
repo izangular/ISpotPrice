@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Property</ion-title>
+    <ion-title> {{propertyData.street}}, {{propertyData.zip}} {{propertyData.town}}<small>  ({{propertyData.latitude}}, {{propertyData.longitude}}) </small></ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,56 +11,141 @@
 
   <ion-card>
 
-    <img [src]="propertyData.imageData"/>
+    <!-- <img [src]="propertyData.imageData" /> -->
+    
+    <div class="image">
+        <img src = "https://homexperts.ch/images/LandingPageCover.jpg" width="100%" height="300px"/>
+        <div id="example">
+          <ion-row>
+            <div class="price">  CHF {{propertyData.price}} </div>
+          </ion-row>
+          <ion-row>
+            <rating [(ngModel)]="propertyData.microRating" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" ></rating>
+          </ion-row>
+        </div>              
+        <!--<h2><span>CHF {{propertyData.price}}<span class='spacer'></span><br /><span class='spacer'></span>Kung Fu Panda</span></h2>-->
+        <!--<h2>
+          <span>           
+              CHF 1'256'700           
+              <rating [(ngModel)]="propertyData.microRating" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" ></rating>   
+          </span>
+        </h2>-->
+        <!--
+        <h2>CHF {{propertyData.price}}</h2>
+        <h2><rating [(ngModel)]="propertyData.microRating" score="4" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" ></rating></h2> -->
+    </div>
 
-    <ion-card-content>
-      <ion-card-title>
-        {{propertyData.street}}, {{propertyData.zip}} {{propertyData.town}} <p><small>Lat {{propertyData.latitude}}, Lon {{propertyData.longitude}}</small></p>
-      </ion-card-title>
-      <!-- <p>
+    <ion-card-content>      
         
-      </p> -->
-    </ion-card-content>
 
-    <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='star'></ion-icon>
-          Rating {{propertyData.microRating}}
-        </button>
-      </ion-col>
-      <ion-col text-center>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='cash'></ion-icon>
-          CHF {{propertyData.price}}
-        </button>
-      </ion-col>
-    </ion-row>
 
-    <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='home'></ion-icon>
-          {{propertyData.objectType}}
-        </button>
-      </ion-col>
-    </ion-row>
+          <ion-row>
+            <ion-col>
+              <button ion-button block (click)="appraise()" >Appraise</button>
+            </ion-col>
+          </ion-row>
 
-  </ion-card>
-  
-  <button ion-button color="secondary" (click)="appraise()" >Appraise</button>
-  <ion-list>
-    <ion-item>
-      <ion-label color="primary" stacked>Surface living</ion-label>
-      <ion-input type="number" placeholder="Surface living" [(ngModel)]="propertyData.surfaceLiving"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" stacked>Rooms</ion-label>
-      <ion-input type="number" placeholder="Rooms" [(ngModel)]="propertyData.roomNb"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" stacked>Build year</ion-label>
-      <ion-input type="number" placeholder="Build year" [(ngModel)]="propertyData.buildYear"></ion-input>
-    </ion-item>    
-  </ion-list>
+
+          <!--<ion-list radio-group>
+              <ion-list-header>
+                Property Type
+              </ion-list-header>
+          
+              <ion-item>
+                <ion-label>Single family house</ion-label>
+                <ion-radio value="rust"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Python</ion-label>
+                <ion-radio value="python" disabled="true"></ion-radio>
+              </ion-item>
+          </ion-list>-->
+          <!-- Land Surface -->
+          <ion-row>
+              <ion-col>      
+                  <ion-label class="VariableText" color="primary" stacked >Land Surface</ion-label>    
+              </ion-col>
+              <ion-col text-center>    
+                  <ion-label class="VariableValue" color="primary" stacked >{{propertyData.LandSurface}} </ion-label>  
+              </ion-col>     
+          </ion-row>
+
+          <ion-row>
+                <ion-col>      
+                    <ion-range min="1" max="1500" step="1" [(ngModel)]="propertyData.LandSurface" color="primary">
+                    </ion-range>
+              </ion-col>
+          </ion-row>
+
+          <!-- Surface Living -->
+          <ion-row>
+              <ion-col>      
+                  <ion-label class="VariableText" color="primary" stacked >Surface Living</ion-label>    
+              </ion-col>
+              <ion-col text-center>    
+                  <ion-label class="VariableValue" color="primary" stacked >{{propertyData.surfaceLiving}} </ion-label>  
+              </ion-col>     
+          </ion-row>
+
+          <ion-row>
+                <ion-col>      
+                    <ion-range min="1" max="300" step="1"  [(ngModel)]="propertyData.surfaceLiving" color="primary">
+                    </ion-range>
+              </ion-col>
+          </ion-row>
+
+          <!-- Number of Rooms -->
+          <ion-row>
+              <ion-col>      
+                  <ion-label class="VariableText" color="primary" stacked >Number of Rooms</ion-label>    
+              </ion-col>
+              <ion-col text-center>    
+                  <ion-label class="VariableValue" color="primary" stacked >{{propertyData.roomNb}} </ion-label>  
+              </ion-col>     
+          </ion-row>
+
+          <ion-row>
+                <ion-col>      
+                    <ion-range min="1" max="10" step="1"  [(ngModel)]="propertyData.roomNb" color="primary">
+                    </ion-range>
+              </ion-col>
+          </ion-row>
+
+          <!-- Number of Bathrooms -->
+          <ion-row>
+              <ion-col>      
+                  <ion-label class="VariableText" color="primary" stacked >Number of Bathrooms</ion-label>    
+              </ion-col>
+              <ion-col text-center>    
+                  <ion-label class="VariableValue" color="primary" stacked >{{propertyData.bathNb}} </ion-label>  
+              </ion-col>     
+          </ion-row>
+
+          <ion-row>
+                <ion-col>      
+                    <ion-range min="1" max="5" step="1"  [(ngModel)]="propertyData.bathNb" color="primary">
+                    </ion-range>
+              </ion-col>
+          </ion-row>
+
+          <!-- Construction Year -->
+          <ion-row>
+              <ion-col>      
+                  <ion-label class="VariableText" color="primary" stacked >Year of Construction</ion-label>    
+              </ion-col>
+              <ion-col text-center>    
+                  <ion-label class="VariableValue" color="primary" stacked >{{propertyData.buildYear}} </ion-label>  
+              </ion-col>     
+          </ion-row>
+
+          <ion-row>
+                <ion-col>      
+                    <ion-range min="1900" max="2019" step="1"  [(ngModel)]="propertyData.buildYear" color="primary">
+                    </ion-range>
+              </ion-col>
+          </ion-row>
+
+       </ion-card-content>
+   </ion-card>
 </ion-content>
