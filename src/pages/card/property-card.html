@@ -41,7 +41,7 @@
 
           <ion-row>
             <ion-col>
-              <button ion-button block (click)="appraise()" >Appraise</button>
+              <button class="appraiseButton" ion-button block (click)="appraise()" >Appraise</button>
             </ion-col>
           </ion-row>
 
@@ -61,6 +61,56 @@
                 <ion-radio value="python" disabled="true"></ion-radio>
               </ion-item>
           </ion-list>-->
+
+
+        <!--<ion-row>
+            <ion-col>      
+                <ion-label color="primary" stacked >Property Type</ion-label>    
+            </ion-col>
+        </ion-row>
+         <ion-row>          
+            <ion-list radio-group [(ngModel)]="propertyData.objectType">
+                <ion-col>
+                    <ion-item>
+                        <ion-label  stacked >Single Family House</ion-label>
+                        <ion-radio value="5" checked></ion-radio>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label  stacked >Condominium</ion-label>
+                        <ion-radio value="6"></ion-radio>
+                    </ion-item>
+                </ion-col>               
+            </ion-list>
+         </ion-row>-->
+
+        <ion-row>
+            <ion-col>      
+                <ion-label class="VariableText" color="primary" stacked >Property Type</ion-label>    
+            </ion-col>            
+        </ion-row>
+
+        <ion-grid>
+             <ion-list radio-group [(ngModel)]="propertyData.objectType">
+                <ion-row>
+                    <ion-col>
+                    <ion-item>
+                            <ion-label  stacked >Single Family House</ion-label>
+                            <ion-radio value="5" checked></ion-radio>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label  stacked >Condominium</ion-label>
+                            <ion-radio value="6"></ion-radio>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+             </ion-list>
+        </ion-grid>
+
+
           <!-- Land Surface -->
           <ion-row>
               <ion-col>      

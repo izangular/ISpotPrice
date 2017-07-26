@@ -14,3 +14,23 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+  .foot{
+    width: 100%;
+    height:  50px;
+    text-align:center;
+    background-color:#283018;    
+  }
+
+.toolbar-background {
+    background-color:#283018;    
+}
+
+// Change white to your color
+.toolbar-title {
+  color: white;
+}
+
+.back-button{
+    color : white;
+}
