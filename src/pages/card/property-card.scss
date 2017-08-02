@@ -16,6 +16,9 @@ ul {
   }
 }
 
+.toolbar-background {
+    background-color: #13a3b6;
+}
 
 /*
 h2 { 
@@ -43,14 +46,14 @@ h2 {
 .VariableText{
   display: inline;
   float:left;
-  color : #173e43;
+  color : white;
   font-weight: bold;
 }
 
 .VariableValue{
   display: inline;
   float:right;
-  color:#173e43;
+  color: white;
   font-weight: bold;
 }
 
@@ -101,16 +104,16 @@ h2 span.spacer {
 }
 
 .appraiseButton{
-  background-color:#3fb0ac;
+  background-color:#13a3b6;//#3fb0ac;
 }
 
 //slider knob css//
 .range-md-primary .range-knob{
-  background-color:  #3daea2 !important; 
+  background-color:  #13a3b6 !important; 
 }
 
 .range-md-primary .range-bar-active{
-    background: #3daea2 !important;
+    background: #13a3b6 !important;
 }
 
 .range-md .range-bar{
@@ -119,22 +122,32 @@ h2 span.spacer {
 }
 
 .radio-md .radio-checked {
-  border-color: #3daea2;
+  border-color: #13a3b6;
 }
 
 .radio-md .radio-checked {
-   border-color: #3daea2 ;
+   border-color: #13a3b6 ;
 }
 
 .radio-md .radio-inner{
-   border-color: #3daea2 ;
-  background-color: #3daea2;
+   border-color: #13a3b6 ;
+  background-color: #13a3b6;
 }
 
 .item-radio-checked.item-md ion-label{
-  color:#173e43;
+  color:#13a3b6;
 }
 
 .item-md{
-  color:#173e43;
+  color:#13a3b6;
+}
+
+.lastitem{
+  padding-bottom: 40px;
+}
+
+.card-md{
+   background: rgba(0, 0, 0, 0.7);
+   margin:0px;
+   width:100%;
 }

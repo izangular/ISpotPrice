@@ -29,6 +29,7 @@ page-home {
     width: 100%;
     height:  50px;
     text-align:center;
+    background : rgba(0,0,0,0.9)
   }
 
   .card-background-page{
@@ -47,4 +48,64 @@ page-home {
     //align-items: stretch;
   }
 
+}
+
+ .scroll-content {
+     background: url(../assets/home7.jpg)   no-repeat center center fixed ; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    //background-color:rgba(0, 0, 0, 0.5);
+   }
+
+.box
+{  
+    //background: url(../assets/Home1.png) no-repeat center center fixed;
+    position: absolute;
+    top:0;
+    //bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width:225px;
+    height:220px;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.box ion-icon {
+    display: inline-block;
+    font-size: 200px;
+    color:#fff; 
+}
+
+.homeimage{
+  //src: url(../assets/home2.jpg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -(X/2)px;
+  margin-top: -(Y/2)px; 
+}
+
+.button-md-secondary {
+    color: #fff;
+    background-color: #13a3b6;
+}
+
+.nav-text{
+  font-size:20px;
+  vertical-align: top;
+  font-weight: bold;
+  color: white;
+}
+
+.btnregister{
+  background-color:orange !important;
+  vertical-align: top;
+}
+
+.scroll-bar-indicator
+{
+	display: none !important;
 }

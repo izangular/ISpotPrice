@@ -9,7 +9,7 @@ export interface IProperty {
     street:string;
     zip:string;
     town:string;
-
+    country:string;
     LandSurface: number;
     surfaceLiving: number;
     roomNb: number;
