@@ -1,94 +1,86 @@
-import {Component} from '@angular/core';
-import {NavController, AlertController, NavParams, LoadingController} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, AlertController, NavParams, LoadingController } from 'ionic-angular';
 import { IProperty } from './IProperty';
 import { ApiService } from '../../providers/api-sevice';
 
 @Component({
-  selector: 'property-card',
-  templateUrl: 'property-card.html',
-  providers:[ApiService]
+    selector: 'property-card',
+    templateUrl: 'property-card.html',
+    providers: [ApiService]
 })
 export class PropertyCard {
-    public propertyData : IProperty;
+    public propertyData: IProperty;
 
-    constructor(public navCtrl : NavController,
-                private alertCtrl : AlertController, 
-                private navParams: NavParams,
-                private apiService: ApiService,
-                 private loadingCtrl:LoadingController,
-            ) {}
+    constructor(public navCtrl: NavController,
+        private alertCtrl: AlertController,
+        private navParams: NavParams,
+        private apiService: ApiService,
+        private loadingCtrl: LoadingController,
+    ) { }
 
     ngOnInit() {
         this.propertyData = this.navParams.get('propertyData');
     }
 
-    back(){
+    back() {
         this.navCtrl.pop();
     }
 
-    appraise(){
-       console.log("Appraise");
-       console.log(this.propertyData.surfaceLiving.toString());
-       console.log(this.propertyData.LandSurface.toString());
-       console.log(this.propertyData.roomNb.toString());
-       console.log(this.propertyData.bathNb.toString());
-       console.log(this.propertyData.buildYear.toString());
-       console.log(this.propertyData.microRating.toString());
-       console.log(this.propertyData.objectType);
-       console.log(this.propertyData.zip);
-       console.log(this.propertyData.town);
-       console.log(this.propertyData.street);
-       console.log(this.propertyData.country);
+    appraise() {
 
-    //    this.apiService.getToken().subscribe
-    //         ( 
-    //             (data) => {
-    //                             console.log(data);
-    //                         },
-    //                 (error) => {
-    //                     console.log(error);
-    //                 }
-    //         )
-  
-   let loading = this.loadingCtrl.create({
-        spinner: 'bubbles',
-        content: 'Estimation in Progress...'
-      }); 
-      loading.present();
+        let loading = this.loadingCtrl.create({
+            spinner: 'bubbles',
+            content: 'Estimation in Progress...'
+        });
 
-       this.apiService.getAppraisedData(this.propertyData.surfaceLiving.toString(),this.propertyData.LandSurface.toString(),this.propertyData.roomNb.toString(),
-                                        this.propertyData.bathNb.toString(),this.propertyData.buildYear.toString(),this.propertyData.microRating.toString(),
-                                        this.propertyData.objectType, this.propertyData.zip ,this.propertyData.town,this.propertyData.street,this.propertyData.country).subscribe
-       (
-           (data) => {
-               console.log(data);
-                        this.propertyData.street =  data.street;
-                        this.propertyData.zip =  data.zip;
-                        this.propertyData.town = data.town;
-                        this.propertyData.country = data.country;
-                        this.propertyData.country = data.category;
-                        this.propertyData.price = data.appraisalValue;
-                        this.propertyData.microRating = data.rating;
-                        this.propertyData.objectType =  data.catCode;
+        try {
+            loading.present();
 
-                        console.log(data.street);
-                        console.log(data.zip);
-                        console.log(data.town);
-                        console.log(data.country);
-                        console.log(data.category);
-                        console.log(data.appraisalValue);
-                        console.log(data.rating);
-                        console.log(data.catCode);
-                     },
-            (error) => {
-                console.log(error);
-            },
-            ()=>{
-                 loading.dismiss();
-            }
-       )
+            this.apiService.getAppraisedData(this.propertyData.surfaceLiving.toString(), this.propertyData.LandSurface.toString(), this.propertyData.roomNb.toString(),
+                this.propertyData.bathNb.toString(), this.propertyData.buildYear.toString(), this.propertyData.microRating.toString(),
+                this.propertyData.objectType, this.propertyData.zip, this.propertyData.town, this.propertyData.street, this.propertyData.country).subscribe
+                (
+                (data) => {
+                    console.log(data);
+                    this.propertyData.street = data.street;
+                    this.propertyData.zip = data.zip;
+                    this.propertyData.town = data.town;
+                    this.propertyData.country = data.country;
+                    this.propertyData.country = data.category;
+                    this.propertyData.price = data.appraisalValue;
+                    this.propertyData.microRating = data.rating;
+                    this.propertyData.objectType = data.catCode;
+                },
+                (error) => {
+                    this.handlError("Something went wrong");
+                    console.log(error);
+                },
+                () => {
+                    loading.dismiss();
+                }
+                )
+        }
+        catch (error) {
+            this.handlError("Something went wrong");
+        }
+        finally {
+            loading.dismiss();
+        }
+    }
 
+    handlError(message) {
+        let msg = this.alertCtrl.create({
+            title: 'Error', message: message,
+            buttons: [
+                {
+                    text: 'Ok',
+                    handler: () => {
+                        console.log(message);//close app
 
-       // this.propertyData.price = Math.round(Math.random() * 1000000);
+                    }
+                }
+            ]
+        });
+        msg.present();
     }
 }

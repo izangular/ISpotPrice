@@ -76,7 +76,7 @@ page-home {
 .box ion-icon {
     display: inline-block;
     font-size: 200px;
-    color:#fff; 
+    color:#fff
 }
 
 .homeimage{
@@ -100,10 +100,34 @@ page-home {
   color: white;
 }
 
+
 .btnregister{
   background-color:orange !important;
+  top:0;
+  bottom:0;
   vertical-align: top;
+  width:50%;
+  // position: fixed;
+  // bottom: 0;
+  // margin-bottom: 80px;
 }
+
+.registerbox
+{  
+    //background: url(../assets/Home1.png) no-repeat center center fixed;
+    position: absolute;
+    //top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom:20px;
+    //margin: auto;
+    //width:500px;
+    //height:220px;
+    //opacity: 0.8;
+    text-align: center;
+}
+
 
 .scroll-bar-indicator
 {
